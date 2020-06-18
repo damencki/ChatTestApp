@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		38FA115F5C7EC1DFE6E36F25 /* Pods_ChatTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B48804979A05A70A8702A9D /* Pods_ChatTestApp.framework */; };
+		B358BD7A249BA24A00DDC515 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B358BD79249BA24A00DDC515 /* GoogleService-Info.plist */; };
 		B3BEE5ED249B9768009B012C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEE5EC249B9768009B012C /* AppDelegate.swift */; };
 		B3BEE5F1249B9768009B012C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEE5F0249B9768009B012C /* ViewController.swift */; };
 		B3BEE5F6249B9769009B012C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3BEE5F5249B9769009B012C /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 		09C5E3B4BB22ABFC4F65B998 /* Pods-ChatTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatTestApp.debug.xcconfig"; path = "Target Support Files/Pods-ChatTestApp/Pods-ChatTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		16EE23165848326B8E9200CA /* Pods-ChatTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatTestApp.release.xcconfig"; path = "Target Support Files/Pods-ChatTestApp/Pods-ChatTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		9B48804979A05A70A8702A9D /* Pods_ChatTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B358BD79249BA24A00DDC515 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B3BEE5E9249B9767009B012C /* ChatTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3BEE5EC249B9768009B012C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3BEE5F0249B9768009B012C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				B3BEE5F0249B9768009B012C /* ViewController.swift */,
 				B3BEE5F5249B9769009B012C /* Assets.xcassets */,
 				B3BEE5F7249B9769009B012C /* LaunchScreen.storyboard */,
+				B358BD79249BA24A00DDC515 /* GoogleService-Info.plist */,
 				B3BEE5FA249B9769009B012C /* Info.plist */,
 			);
 			path = ChatTestApp;
@@ -74,7 +77,6 @@
 				09C5E3B4BB22ABFC4F65B998 /* Pods-ChatTestApp.debug.xcconfig */,
 				16EE23165848326B8E9200CA /* Pods-ChatTestApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -148,6 +150,7 @@
 			files = (
 				B3BEE5F9249B9769009B012C /* LaunchScreen.storyboard in Resources */,
 				B3BEE5F6249B9769009B012C /* Assets.xcassets in Resources */,
+				B358BD7A249BA24A00DDC515 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +347,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = leanidhubarenka.ChatTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leanidhubarenka.ChatTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -362,7 +365,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = leanidhubarenka.ChatTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leanidhubarenka.ChatTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
