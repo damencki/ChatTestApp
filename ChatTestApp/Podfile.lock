@@ -348,6 +348,7 @@ PODS:
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.8)
+  - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -355,6 +356,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - MessageKit
+  - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
@@ -382,6 +384,7 @@ SPEC REPOS:
     - MessageKit
     - nanopb
     - PromisesObjC
+    - SnapKit
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -408,7 +411,8 @@ SPEC CHECKSUMS:
   MessageKit: 3beb578737a5aa2bba25cc27c7b6d6faa09af5a7
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 71dd1f70bc8dec72602e828e21d421ea24f422a2
+PODFILE CHECKSUM: fd75b2fb10213378d8586105ca835882ed3ea0b3
 
 COCOAPODS: 1.9.2
