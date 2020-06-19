@@ -1,3 +1,4 @@
+import FirebaseAuth
 import SnapKit
 import UIKit
 
@@ -36,8 +37,13 @@ class ViewController: UIViewController {
     }
     
     @objc private func didTapButton() {
+        displayNameTextField.resignFirstResponder()
         guard let displayName = displayNameTextField.text else {return}
         ApplicationSettings.displayName = displayName
+        Auth.auth().signInAnonymously { [weak self] result, error in
+            guard let user = Auth.auth().currentUser else {return}
+            self?.navigationController?.pushViewController(ChatViewController(user: user), animated: true)
+        }
     }
 }
 
