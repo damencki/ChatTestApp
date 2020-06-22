@@ -42,7 +42,8 @@ class ViewController: UIViewController {
         ApplicationSettings.displayName = displayName
         Auth.auth().signInAnonymously { [weak self] result, error in
             guard let user = Auth.auth().currentUser else {return}
-            self?.navigationController?.pushViewController(ChatViewController(user: user), animated: true)
+//            self?.navigationController?.pushViewController(ChatViewController(user: user), animated: true)
+            self?.navigationController?.pushViewController(TestChatViewController(user: user), animated: true)
         }
     }
 }

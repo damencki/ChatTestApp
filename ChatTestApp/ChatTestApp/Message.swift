@@ -6,7 +6,7 @@
 //  Copyright © 2020 iTechArt. All rights reserved.
 //
 
-import Firebase
+import FirebaseDatabase
 import FirebaseFirestore
 import MessageKit
 
@@ -71,6 +71,35 @@ class Message: MessageType {
         fatalError()
     }
     
+    init?(dataSnapshot: DataSnapshot) {
+        guard let data = dataSnapshot.value as? [String: Any] else {
+            return nil
+        }
+        guard let sentDate = data["created"] as? Timestamp else {
+            return nil
+        }
+        guard let senderID = data["senderID"] as? String else {
+            return nil
+        }
+        guard let senderName = data["senderName"] as? String else {
+            return nil
+        }
+        
+        self.sentDate = sentDate.dateValue()
+        self.sender = Sender(senderId: senderID, displayName: senderName)
+        
+        if let content = data["content"] as? String {
+            self.content = content
+            downloadURL = nil
+        } else if let urlString = data["url"] as? String, let url = URL(string: urlString) {
+            downloadURL = url
+            self.content = ""
+        } else {
+            return nil
+        }
+        self.kind = MessageKind.text(content)
+    }
+    
     var description: String {
         return self.messageText
     }
@@ -93,7 +122,7 @@ extension Message: DatabaseRepresentation {
     
     var representation: [String : Any] {
         var rep: [String : Any] = [
-            "created": sentDate,
+            "created": ServerValue.timestamp(),
             "senderID": sender.senderId,
             "senderName": sender.displayName,
         ]
