@@ -11,13 +11,13 @@ import FirebaseFirestore
 import MessageKit
 
 class Message: MessageType {
-    var id: String?
+    var id: String
     var sentDate: Date
     var kind: MessageKind
     var sender: SenderType
     
     var messageId: String {
-        return id ?? UUID().uuidString
+        return id
     }
     
     var image: UIImage? = nil
@@ -29,6 +29,8 @@ class Message: MessageType {
         self.kind = messageKind
         self.sentDate = createdAt
         self.sender = sender
+        
+        id = messageId
         
         switch messageKind {
         case .text(let text):
@@ -70,58 +72,13 @@ class Message: MessageType {
     required init(jsonDict: [String: Any]) {
         fatalError()
     }
-    
-    init?(dataSnapshot: DataSnapshot) {
-        guard let data = dataSnapshot.value as? [String: Any] else {
-            return nil
-        }
-        guard let sentDate = data["created"] as? Timestamp else {
-            return nil
-        }
-        guard let senderID = data["senderID"] as? String else {
-            return nil
-        }
-        guard let senderName = data["senderName"] as? String else {
-            return nil
-        }
-        
-        self.sentDate = sentDate.dateValue()
-        self.sender = Sender(senderId: senderID, displayName: senderName)
-        
-        if let content = data["content"] as? String {
-            self.content = content
-            downloadURL = nil
-        } else if let urlString = data["url"] as? String, let url = URL(string: urlString) {
-            downloadURL = url
-            self.content = ""
-        } else {
-            return nil
-        }
-        self.kind = MessageKind.text(content)
-    }
-    
-    var description: String {
-        return self.messageText
-    }
-    
-    var messageText: String {
-        switch kind {
-        case .text(let text):
-            return text
-        default:
-            return ""
-        }
-    }
-    
-    var channelId: String {
-        return (sender.senderId )
-    }
 }
-
+    
 extension Message: DatabaseRepresentation {
     
     var representation: [String : Any] {
         var rep: [String : Any] = [
+            "id": id,
             "created": ServerValue.timestamp(),
             "senderID": sender.senderId,
             "senderName": sender.displayName,

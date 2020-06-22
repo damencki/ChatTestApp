@@ -14,16 +14,17 @@ import InputBarAccessoryView
 
 class TestChatViewController: MessagesViewController {
     private struct Constants {
-        static let thread = "thread"
+        static let thread = "thread1"
     }
     
     var messages: [Message] = []
     let reference = Database.database().reference()
     private let user: User
-    private let sender = Sender(senderId: UUID().uuidString, displayName: ApplicationSettings.displayName)
+    private let sender: SenderType
     
     init(user: User) {
         self.user = user
+        self.sender = Sender.init(senderId: user.uid, displayName: ApplicationSettings.displayName)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,17 +39,15 @@ class TestChatViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
-        reference.child(Constants.thread).observe(.childAdded) { [weak self] snapshot in
-            guard let self = self, let value = snapshot.value, let dictionary = value as? [String: AnyObject
-                ] else {
-                return
-            }
-            let message = Message(document: snapshot)
-            
-            let message = Message(jsonDict: dictionary)
+        
+        let query = reference.child(Constants.thread).queryLimited(toLast: 10)
+        _ = query.observe(.childAdded, with: { snapshot in
+            guard let dictionary = snapshot.value as? [String: Any], let content = dictionary["content"] as? String, let timestamp = dictionary["created"] as? Double, let senderID = dictionary["senderID"] as? String, let senderName = dictionary["senderName"] as? String else {return}
+            let message = Message(messageId: snapshot.key, messageKind: .text(content), createdAt: Date(timeIntervalSince1970: timestamp), sender: Sender(senderId: senderID, displayName: senderName))
             self.insertNewMessage(message)
-        }
-    }
+        })
+
+}
     
     private func insertNewMessage(_ message: Message) {
         guard !messages.contains(message) else {
@@ -71,8 +70,7 @@ class TestChatViewController: MessagesViewController {
     }
     
     private func save(_ message: Message) {
-        let representation = message.representation
-        reference.child(Constants.thread).childByAutoId().updateChildValues(message.representation) { error, reference in
+        reference.child(Constants.thread).child(message.id).setValue(message.representation) { error, reference in
             self.messagesCollectionView.scrollToBottom()
         }
     }
