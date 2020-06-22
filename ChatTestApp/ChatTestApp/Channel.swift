@@ -30,7 +30,7 @@ struct Channel {
 }
 
 extension Channel: DatabaseRepresentation {
-    var representation: [String : Any] {
+    var representation: [String: Any] {
         var rep = ["name": name]
         rep["id"] = id
         return rep

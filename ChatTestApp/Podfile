@@ -12,5 +12,6 @@ target 'ChatTestApp' do
   pod 'Firebase/Firestore'
   pod 'SnapKit', '~> 5.0.0'
   pod 'Firebase/Database'
+  pod 'SwiftLint'
   
 end

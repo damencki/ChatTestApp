@@ -5,7 +5,6 @@ import FirebaseStorage
 import FirebaseAuth
 import UIKit
 
-
 struct Sender: SenderType {
     var senderId: String
     var displayName: String

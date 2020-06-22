@@ -20,8 +20,8 @@ class Message: MessageType {
         return id
     }
     
-    var image: UIImage? = nil
-    var downloadURL: URL? = nil
+    var image: UIImage?
+    var downloadURL: URL?
     let content: String
     
     init(messageId: String, messageKind: MessageKind, createdAt: Date, sender: SenderType) {
@@ -76,12 +76,12 @@ class Message: MessageType {
     
 extension Message: DatabaseRepresentation {
     
-    var representation: [String : Any] {
-        var rep: [String : Any] = [
+    var representation: [String: Any] {
+        var rep: [String: Any] = [
             "id": id,
             "created": ServerValue.timestamp(),
             "senderID": sender.senderId,
-            "senderName": sender.displayName,
+            "senderName": sender.displayName
         ]
         
         if let url = downloadURL {
@@ -103,4 +103,3 @@ extension Message: Comparable {
         return lhs.sentDate < rhs.sentDate
     }
 }
-

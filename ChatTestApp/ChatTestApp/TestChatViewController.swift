@@ -39,11 +39,19 @@ class TestChatViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
-        
         let query = reference.child(Constants.thread).queryLimited(toLast: 10)
         _ = query.observe(.childAdded, with: { snapshot in
-            guard let dictionary = snapshot.value as? [String: Any], let content = dictionary["content"] as? String, let timestamp = dictionary["created"] as? Double, let senderID = dictionary["senderID"] as? String, let senderName = dictionary["senderName"] as? String else {return}
-            let message = Message(messageId: snapshot.key, messageKind: .text(content), createdAt: Date(timeIntervalSince1970: timestamp), sender: Sender(senderId: senderID, displayName: senderName))
+            guard let dictionary = snapshot.value as? [String: Any],
+                let content = dictionary["content"] as? String,
+                let timestamp = dictionary["created"] as? Double,
+                let senderID = dictionary["senderID"] as? String,
+                let senderName = dictionary["senderName"] as? String else {
+                    return
+            }
+            let message = Message(messageId: snapshot.key,
+                                  messageKind: .text(content),
+                                  createdAt: Date(timeIntervalSince1970: timestamp),
+                                  sender: Sender(senderId: senderID, displayName: senderName))
             self.insertNewMessage(message)
         })
 
@@ -70,7 +78,7 @@ class TestChatViewController: MessagesViewController {
     }
     
     private func save(_ message: Message) {
-        reference.child(Constants.thread).child(message.id).setValue(message.representation) { error, reference in
+        reference.child(Constants.thread).child(message.id).setValue(message.representation) { _, _ in
             self.messagesCollectionView.scrollToBottom()
         }
     }

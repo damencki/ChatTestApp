@@ -40,11 +40,10 @@ class ViewController: UIViewController {
         displayNameTextField.resignFirstResponder()
         guard let displayName = displayNameTextField.text else {return}
         ApplicationSettings.displayName = displayName
-        Auth.auth().signInAnonymously { [weak self] result, error in
+        Auth.auth().signInAnonymously { [weak self] _, _ in
             guard let user = Auth.auth().currentUser else {return}
 //            self?.navigationController?.pushViewController(ChatViewController(user: user), animated: true)
             self?.navigationController?.pushViewController(TestChatViewController(user: user), animated: true)
         }
     }
 }
-
