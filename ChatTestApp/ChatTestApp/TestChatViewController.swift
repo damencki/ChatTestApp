@@ -17,6 +17,15 @@ class TestChatViewController: MessagesViewController {
         static let thread = "thread1"
     }
     
+    lazy var attachmentManager: AttachmentManager = { [unowned self] in
+         let manager = AttachmentManager()
+        manager.isPersistent = true
+        manager.showAddAttachmentCell = true
+         manager.delegate = self
+        manager.dataSource = self
+         return manager
+     }()
+    
     var messages: [Message] = []
     let reference = Database.database().reference()
     private let user: User
@@ -34,28 +43,29 @@ class TestChatViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let faceBookInputBar = FacebookInputBar()
+        faceBookInputBar.onSelected = { inputItem in
+            print("SSS coorinator on selected document")
+        }
+        messageInputBar = faceBookInputBar
         messageInputBar.delegate = self
+        
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
-        let query = reference.child(Constants.thread).queryLimited(toLast: 10)
-        _ = query.observe(.childAdded, with: { snapshot in
-            guard let dictionary = snapshot.value as? [String: Any],
-                let content = dictionary["content"] as? String,
-                let timestamp = dictionary["created"] as? Double,
-                let senderID = dictionary["senderID"] as? String,
-                let senderName = dictionary["senderName"] as? String else {
-                    return
+        let query = reference.child(Constants.thread)
+        query.observe(.value) { [weak self] snaphsot in
+            snaphsot.children.forEach { snaphsotChild in
+                guard let self = self,
+                    let dataSnapshot = snaphsotChild as? DataSnapshot,
+                    let message = Message(snapshot: dataSnapshot) else {
+                        return
+                }
+                self.insertNewMessage(message)
             }
-            let message = Message(messageId: snapshot.key,
-                                  messageKind: .text(content),
-                                  createdAt: Date(timeIntervalSince1970: timestamp),
-                                  sender: Sender(senderId: senderID, displayName: senderName))
-            self.insertNewMessage(message)
-        })
-
-}
+        }
+    }
     
     private func insertNewMessage(_ message: Message) {
         guard !messages.contains(message) else {
@@ -106,4 +116,78 @@ extension TestChatViewController: MessagesDataSource {
     }
 }
 
-extension TestChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegate {}
+extension TestChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegate {
+  
+}
+
+extension TestChatViewController: AttachmentManagerDelegate, AttachmentManagerDataSource {
+    func attachmentManager(_ manager: AttachmentManager, cellFor attachment: AttachmentManager.Attachment, at index: Int) -> AttachmentCell {
+        return AttachmentCell()
+    }
+    
+    // MARK: - AttachmentManagerDelegate
+    
+    func attachmentManager(_ manager: AttachmentManager, shouldBecomeVisible: Bool) {
+        setAttachmentManager(active: shouldBecomeVisible)
+    }
+    
+    func attachmentManager(_ manager: AttachmentManager, didReloadTo attachments: [AttachmentManager.Attachment]) {
+        messageInputBar.sendButton.isEnabled = !manager.attachments.isEmpty
+    }
+    
+    func attachmentManager(_ manager: AttachmentManager, didInsert attachment: AttachmentManager.Attachment, at index: Int) {
+        messageInputBar.sendButton.isEnabled = !manager.attachments.isEmpty
+    }
+    
+    func attachmentManager(_ manager: AttachmentManager, didRemove attachment: AttachmentManager.Attachment, at index: Int) {
+        messageInputBar.sendButton.isEnabled = !manager.attachments.isEmpty
+    }
+    
+    func attachmentManager(_ manager: AttachmentManager, didSelectAddAttachmentAt index: Int) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // MARK: - AttachmentManagerDelegate Helper
+    
+    func setAttachmentManager(active: Bool) {
+        
+        let topStackView = messageInputBar.topStackView
+        if active && !topStackView.arrangedSubviews.contains(attachmentManager.attachmentView) {
+            topStackView.insertArrangedSubview(attachmentManager.attachmentView, at: topStackView.arrangedSubviews.count)
+            topStackView.layoutIfNeeded()
+        } else if !active && topStackView.arrangedSubviews.contains(attachmentManager.attachmentView) {
+            topStackView.removeArrangedSubview(attachmentManager.attachmentView)
+            topStackView.layoutIfNeeded()
+        }
+    }
+}
+
+extension TestChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
+        dismiss(animated: true, completion: {
+            if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
+                let handled = self.attachmentManager.handleInput(of: pickedImage)
+                if !handled {
+                    // throw error
+                }
+            }
+        })
+    }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+    return input.rawValue
+}

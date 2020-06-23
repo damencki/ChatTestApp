@@ -16,6 +16,15 @@
 		8BF024AB249C12A200BCB6E9 /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF024AA249C12A200BCB6E9 /* DatabaseRepresentation.swift */; };
 		8BF024AD249C19DB00BCB6E9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF024AC249C19DB00BCB6E9 /* Message.swift */; };
 		8BF024AF249C1CFD00BCB6E9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF024AE249C1CFD00BCB6E9 /* Utils.swift */; };
+		B313E33824A29A6900AE3229 /* SlackInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B313E33724A29A6900AE3229 /* SlackInputBar.swift */; };
+		B313E33F24A29BBD00AE3229 /* InputBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B313E33924A29BBC00AE3229 /* InputBarStyle.swift */; };
+		B313E34024A29BBD00AE3229 /* FacebookInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B313E33A24A29BBC00AE3229 /* FacebookInputBar.swift */; };
+		B313E34124A29BBD00AE3229 /* GitHawkInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B313E33B24A29BBC00AE3229 /* GitHawkInputBar.swift */; };
+		B313E34224A29BBD00AE3229 /* NoTextViewInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B313E33C24A29BBC00AE3229 /* NoTextViewInputBar.swift */; };
+		B313E34424A29BBD00AE3229 /* IMessageInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B313E33E24A29BBD00AE3229 /* IMessageInputBar.swift */; };
+		B313E34E24A29CB600AE3229 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B313E34B24A29CB600AE3229 /* ConversationCell.swift */; };
+		B313E34F24A29CB600AE3229 /* InboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B313E34C24A29CB600AE3229 /* InboxCell.swift */; };
+		B313E35024A29CB600AE3229 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B313E34D24A29CB600AE3229 /* ImageCell.swift */; };
 		B358BD7A249BA24A00DDC515 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B358BD79249BA24A00DDC515 /* GoogleService-Info.plist */; };
 		B3BEE5ED249B9768009B012C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEE5EC249B9768009B012C /* AppDelegate.swift */; };
 		B3BEE5F1249B9768009B012C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEE5F0249B9768009B012C /* ViewController.swift */; };
@@ -35,6 +44,15 @@
 		8BF024AC249C19DB00BCB6E9 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8BF024AE249C1CFD00BCB6E9 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		9B48804979A05A70A8702A9D /* Pods_ChatTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B313E33724A29A6900AE3229 /* SlackInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackInputBar.swift; sourceTree = "<group>"; };
+		B313E33924A29BBC00AE3229 /* InputBarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarStyle.swift; sourceTree = "<group>"; };
+		B313E33A24A29BBC00AE3229 /* FacebookInputBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookInputBar.swift; sourceTree = "<group>"; };
+		B313E33B24A29BBC00AE3229 /* GitHawkInputBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHawkInputBar.swift; sourceTree = "<group>"; };
+		B313E33C24A29BBC00AE3229 /* NoTextViewInputBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoTextViewInputBar.swift; sourceTree = "<group>"; };
+		B313E33E24A29BBD00AE3229 /* IMessageInputBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMessageInputBar.swift; sourceTree = "<group>"; };
+		B313E34B24A29CB600AE3229 /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		B313E34C24A29CB600AE3229 /* InboxCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxCell.swift; sourceTree = "<group>"; };
+		B313E34D24A29CB600AE3229 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		B358BD79249BA24A00DDC515 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B3BEE5E9249B9767009B012C /* ChatTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3BEE5EC249B9768009B012C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +74,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B313E34524A29BCC00AE3229 /* InputBars */ = {
+			isa = PBXGroup;
+			children = (
+				B313E33724A29A6900AE3229 /* SlackInputBar.swift */,
+				B313E33A24A29BBC00AE3229 /* FacebookInputBar.swift */,
+				B313E33B24A29BBC00AE3229 /* GitHawkInputBar.swift */,
+				B313E33E24A29BBD00AE3229 /* IMessageInputBar.swift */,
+				B313E33924A29BBC00AE3229 /* InputBarStyle.swift */,
+				B313E33C24A29BBC00AE3229 /* NoTextViewInputBar.swift */,
+			);
+			path = InputBars;
+			sourceTree = "<group>";
+		};
+		B313E34A24A29CB600AE3229 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B313E34B24A29CB600AE3229 /* ConversationCell.swift */,
+				B313E34C24A29CB600AE3229 /* InboxCell.swift */,
+				B313E34D24A29CB600AE3229 /* ImageCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		B3BEE5E0249B9767009B012C = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +118,7 @@
 		B3BEE5EB249B9767009B012C /* ChatTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				B313E34A24A29CB600AE3229 /* Cells */,
 				B3BEE5EC249B9768009B012C /* AppDelegate.swift */,
 				B3BEE5F0249B9768009B012C /* ViewController.swift */,
 				8BF024A2249BB10B00BCB6E9 /* ChatViewController.swift */,
@@ -84,6 +126,7 @@
 				8BF024AA249C12A200BCB6E9 /* DatabaseRepresentation.swift */,
 				8BF024AC249C19DB00BCB6E9 /* Message.swift */,
 				8B6BF96A24A09F6D007FE313 /* TestChatViewController.swift */,
+				B313E34524A29BCC00AE3229 /* InputBars */,
 				8BF024A6249BCD6400BCB6E9 /* Channel.swift */,
 				B3BEE5F5249B9769009B012C /* Assets.xcassets */,
 				B3BEE5F7249B9769009B012C /* LaunchScreen.storyboard */,
@@ -245,15 +288,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B313E34124A29BBD00AE3229 /* GitHawkInputBar.swift in Sources */,
 				B3BEE5F1249B9768009B012C /* ViewController.swift in Sources */,
 				8BF024A7249BCD6400BCB6E9 /* Channel.swift in Sources */,
 				8BF024AF249C1CFD00BCB6E9 /* Utils.swift in Sources */,
 				B3BEE5ED249B9768009B012C /* AppDelegate.swift in Sources */,
+				B313E34224A29BBD00AE3229 /* NoTextViewInputBar.swift in Sources */,
 				8BF024A1249BAAC300BCB6E9 /* ViewBuilder.swift in Sources */,
+				B313E33824A29A6900AE3229 /* SlackInputBar.swift in Sources */,
+				B313E34F24A29CB600AE3229 /* InboxCell.swift in Sources */,
+				B313E35024A29CB600AE3229 /* ImageCell.swift in Sources */,
+				B313E34E24A29CB600AE3229 /* ConversationCell.swift in Sources */,
 				8BF024A3249BB10B00BCB6E9 /* ChatViewController.swift in Sources */,
+				B313E33F24A29BBD00AE3229 /* InputBarStyle.swift in Sources */,
+				B313E34424A29BBD00AE3229 /* IMessageInputBar.swift in Sources */,
 				8BF024AD249C19DB00BCB6E9 /* Message.swift in Sources */,
 				8BF0249D249BA73500BCB6E9 /* ApplicationSettings.swift in Sources */,
 				8B6BF96B24A09F6D007FE313 /* TestChatViewController.swift in Sources */,
+				B313E34024A29BBD00AE3229 /* FacebookInputBar.swift in Sources */,
 				8BF024AB249C12A200BCB6E9 /* DatabaseRepresentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,6 +444,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BR48HYF952;
 				INFOPLIST_FILE = ChatTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -410,6 +463,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BR48HYF952;
 				INFOPLIST_FILE = ChatTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -69,11 +69,26 @@ class Message: MessageType {
         self.kind = MessageKind.text(content)
     }
     
+    init?(snapshot: DataSnapshot) {
+        guard let dictionary = snapshot.value as? [String: Any],
+            let content = dictionary["content"] as? String,
+            let timestamp = dictionary["created"] as? TimeInterval,
+            let senderID = dictionary["senderID"] as? String,
+            let senderName = dictionary["senderName"] as? String else {
+                return nil
+        }
+        self.id = snapshot.key
+        self.sentDate = Date(timeIntervalSince1970: timestamp)
+        self.sender = Sender(senderId: senderID, displayName: senderName)
+        self.content = content
+        self.kind = .text(content)
+    }
+    
     required init(jsonDict: [String: Any]) {
         fatalError()
     }
 }
-    
+
 extension Message: DatabaseRepresentation {
     
     var representation: [String: Any] {
